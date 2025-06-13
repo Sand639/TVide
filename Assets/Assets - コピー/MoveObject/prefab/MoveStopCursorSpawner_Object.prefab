@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8338830424282426737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2322901885137838251}
+  - component: {fileID: 4028551821663916128}
+  m_Layer: 0
+  m_Name: MoveStopCursorSpawner_Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2322901885137838251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338830424282426737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.413511, y: 0.84924316, z: 3.013029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4028551821663916128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338830424282426737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910ed5cc04e7d944da02fd90ec878997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StopCursor: {fileID: 5755964485372582948, guid: c4901da426a05d143ab5b0f00cc4a829, type: 3}
+  StopArea: {fileID: 4271520077424155208, guid: eb2e9311f5f52d8489e744223b3b4db2, type: 3}
+  playerCamera: {fileID: 0}
+  frameSpawnDistance: 3
+  frameMoveSpeed: 8
+  blockOffsetZ: 12
+  scale: {x: 10, y: 10, z: 3}
