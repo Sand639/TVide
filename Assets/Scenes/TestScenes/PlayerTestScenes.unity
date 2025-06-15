@@ -3363,6 +3363,7 @@ GameObject:
   - component: {fileID: 1277499503}
   - component: {fileID: 1277499510}
   - component: {fileID: 1277499509}
+  - component: {fileID: 1277499505}
   - component: {fileID: 1277499506}
   - component: {fileID: 1277499507}
   - component: {fileID: 1277499508}
@@ -3564,6 +3565,45 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.04, z: 0}
+--- !u!114 &1277499505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277499495}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b29f7ce215f742b78b45ea9d41c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 673953736, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1790457309, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: 2136122859, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -591140761, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1888692347, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: 240246721, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -2100804166, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: 2589185, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1311807341, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -60402094, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1089659008, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -804393975, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -2141380820, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -489128824, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -2048220659, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1402278182, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: 1965711394, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -463757538, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1667974405, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -212111425, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: 1738355259, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1929933628, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: -1374843389, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  - {fileID: 1491669501, guid: 8b748de93ca7e8c4c9948e27946e423d, type: 3}
+  spriteRenderer: {fileID: 1277499498}
+  frameRate: 13
 --- !u!114 &1277499506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3641,6 +3681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementKey: 4
+  moveSpeed: 15
+  jumpPower: 10.5
 --- !u!4 &1304793302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3394951616832546779, guid: 71a6628481016b0418fdc6e19652273d, type: 3}

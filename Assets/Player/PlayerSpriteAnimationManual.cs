@@ -17,8 +17,8 @@ public class PlayerSpriteAnimationDirectional : MonoBehaviour
     {
         int newRow = -1;
 
-       // if (!FrameAndBlockSpawner.IsFrameActive)
-       if (!InventoryItemSpawn.IsFrameActive)
+        // if (!FrameAndBlockSpawner.IsFrameActive)
+        if (!InventoryItemSpawn.IsFrameActive)
         {
             if (MonitorZoomController.isZoomComplete && MonitorZoomController.CurrentZoomIndex == 0)
             {
@@ -41,7 +41,7 @@ public class PlayerSpriteAnimationDirectional : MonoBehaviour
             }
         }
 
-            if (newRow != -1)
+        if (newRow != -1)
         {
             if (newRow != currentRow)
             {
