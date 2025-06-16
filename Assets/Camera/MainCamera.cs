@@ -16,7 +16,6 @@ public class MainCamera : MonoBehaviour
     GameObject charaObj;
     Vector3 targetCameraPos;
     public float lerpSpeed = 7.0f;
-    bool isCameraTilt = false;
 
     void Start()
     {
@@ -43,21 +42,15 @@ public class MainCamera : MonoBehaviour
 
     void CameraLeap()
     {
-        if (MonitorZoomController.isZoomComplete && MonitorZoomController.CurrentZoomIndex == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                isCameraTilt = !isCameraTilt;
-            }
-        }
 
-        if (isCameraTilt)
+        //カメラ切替のスキルの3D設定
+        if (GameManager.Instance.isCameraSkill)
         {
             targetCameraPos.x = charaObj.transform.position.x;
             targetCameraPos.y = charaObj.transform.position.y + 6.0f;
             targetCameraPos.z = charaObj.transform.position.z - 15.0f;
         }
-        else
+        else　//カメラ切替のスキルの2D設定
         {
             targetCameraPos.x = charaObj.transform.position.x;
             targetCameraPos.y = charaObj.transform.position.y - 6.0f;
@@ -75,7 +68,7 @@ public class MainCamera : MonoBehaviour
         transform.LookAt(charaObj.transform.position);
         Vector3 euler = transform.rotation.eulerAngles;
         euler.y = 0f;
-        if (!isCameraTilt && euler.x > 10f && euler.x < 180f) euler.x = 10f;
+        if (!GameManager.Instance.isCameraSkill && euler.x > 10f && euler.x < 180f) euler.x = 10f;
         transform.rotation = Quaternion.Euler(euler);
     }
 

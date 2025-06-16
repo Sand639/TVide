@@ -22,7 +22,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake()
     {
-
         //画像を読み込んで自動でスプライトを割り当てる
         sprites = Resources.LoadAll<Sprite>("Sprites/Player");
 
@@ -30,8 +29,11 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        //現在フレームの移動方向を保持
-        int currentDirection = -1;
+        //一時停止スキル発動中は
+        if (InventoryItemSpawn.IsFrameActive) return;
+
+            //現在フレームの移動方向を保持
+            int currentDirection = -1;
 
         //プレイヤーの入力キーによってアニメーションを変更する
         switch (PlayerManager.Instance.movementKey)
@@ -83,7 +85,6 @@ public class PlayerAnimation : MonoBehaviour
         {
             //プレイヤーが移動していないならtimerを0にする
             timer = 0f;
-
         }
     }
 
