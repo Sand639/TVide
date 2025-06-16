@@ -28,17 +28,17 @@ public class MainCamera : MonoBehaviour
     {
         CameraLeap();
 
-        if (MonitorZoomController.isZoomComplete &&
-        MonitorZoomController.CurrentZoomIndex == 0 &&
-        Input.GetKeyDown(KeyCode.Return))
-        {
-            StartShake();
-        }
+        //if (MonitorZoomController.isZoomComplete &&
+        //MonitorZoomController.CurrentZoomIndex == 0 &&
+        //Input.GetKeyDown(KeyCode.Return))
+        //{
+        //    StartShake();
+        //}
 
-        if (isShaking)
-        {
-            ApplyShake();
-        }
+        //if (isShaking)
+        //{
+        //    ApplyShake();
+        //}
     }
 
     void CameraLeap()

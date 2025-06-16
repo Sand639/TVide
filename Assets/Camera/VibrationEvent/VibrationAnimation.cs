@@ -19,6 +19,10 @@ public class VibrationAnimation : MonoBehaviour
     private float shakeElapsed = 0f;
 
     public bool isAnimation = false;
+    private bool isFading = false;
+
+    [Header("Canvasのフェード処理を呼び出す")]
+    public CanvasFade canvasFade;
 
     void Start()
     {
@@ -33,12 +37,16 @@ public class VibrationAnimation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)&&isAnimation==false)
+        if (Input.GetKeyDown(KeyCode.I) && !isAnimation && !isFading)
         {
+            Debug.Log("通知：振動アニメーション開始");
+
+            if (canvasFade != null)
+                canvasFade.FadeOutAll();
+
             StartCoroutine(ZoomOutAndReturn());
         }
 
-        //isAnimaitionが真になったらアニメーションとカメラの振動を実行させる
         if (isAnimation)
         {
             shakeElapsed += Time.deltaTime;
@@ -47,8 +55,8 @@ public class VibrationAnimation : MonoBehaviour
             if (shakeTimer >= shakeFrequency)
             {
                 shakeTimer = 0f;
-                Vector2 shakeOffset = Random.insideUnitCircle * shakeIntensity;
-                mainCamera.transform.localPosition = originalPosition + new Vector3(shakeOffset.x, shakeOffset.y, 0);
+                float shakeOffsetY = Random.Range(-shakeIntensity, shakeIntensity);
+                mainCamera.transform.localPosition = originalPosition + new Vector3(0, shakeOffsetY, 0);
             }
 
             if (shakeElapsed >= shakeDuration)
@@ -64,25 +72,29 @@ public class VibrationAnimation : MonoBehaviour
 
     IEnumerator ZoomOutAndReturn()
     {
-        //カメラをひく
         yield return StartCoroutine(SmoothZoom(mainCamera.orthographicSize, zoomOutSize, zoomDuration));
 
-        // 振動開始
         shakeElapsed = 0f;
         shakeTimer = 0f;
         isAnimation = true;
 
-        //カメラをとめる
         yield return new WaitForSeconds(waitTime);
-        //カメラを元に戻す
+
+        isFading = true;
+        if (canvasFade != null)
+        {
+            canvasFade.FadeInAll(() =>
+            {
+                isFading = false;
+            });
+        }
+
         yield return StartCoroutine(SmoothZoom(mainCamera.orthographicSize, originalSize, zoomDuration));
 
         isAnimation = false;
-
+        Debug.Log("通知：振動アニメーション終了");
     }
 
-
-    //カメラの補間用の関数
     IEnumerator SmoothZoom(float fromSize, float toSize, float duration)
     {
         float elapsed = 0f;
