@@ -18,7 +18,7 @@ public class MoveObject : MonoBehaviour
     public Vector3 targetScale = Vector3.one;
 
     // このオブジェクトが停止させているオブジェクトとその重複カウント
-    private Dictionary<GameObject, int> stoppedObjects = new Dictionary<GameObject, int>();
+    protected Dictionary<GameObject, int> stoppedObjects = new Dictionary<GameObject, int>();
 
     // このオブジェクトが他のオブジェクトによって停止されている回数
     private int beingStoppedCount = 0;
