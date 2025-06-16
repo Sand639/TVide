@@ -8,6 +8,9 @@ TagManager:
   - Pickable
   - Wall
   - CameraChangeRange
+  - Floating
+  - JumpZone
+  - HalfwayPoint
   layers:
   - Default
   - TransparentFX

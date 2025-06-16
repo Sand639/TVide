@@ -10,11 +10,11 @@ public class PlayerHeal : MonoBehaviour
         {
             PlayerHP PlayerHP;
             PlayerHP = collision.gameObject.GetComponent<PlayerHP>();
-            
+
             PlayerHP.HP = PlayerHP.HP + Heal;
-                
+
             Destroy(this.gameObject);
-            
+
         }
     }
-   }
+}
