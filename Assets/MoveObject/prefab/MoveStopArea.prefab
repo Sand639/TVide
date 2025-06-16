@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4287958524560174125}
   - component: {fileID: 6299801221951490966}
   - component: {fileID: 5896479914595383854}
-  - component: {fileID: 8241969836386275076}
+  - component: {fileID: 5057647462830702817}
+  - component: {fileID: 4043883016554545862}
   m_Layer: 0
   m_Name: MoveStopArea
   m_TagString: Untagged
@@ -109,7 +110,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8241969836386275076
+--- !u!54 &5057647462830702817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271520077424155208}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4043883016554545862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,10 +146,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4271520077424155208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0aa897b90a6b444af366bf0a951923, type: 3}
+  m_Script: {fileID: 11500000, guid: 976b03e7b0c9d3345b4a2ad94216eafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 5
   scaleUpTime: 0.2
+  waitTime: 4.6
   scaleDownTime: 0.2
   targetScale: {x: 10, y: 10, z: 10}

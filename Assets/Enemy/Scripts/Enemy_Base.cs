@@ -3,53 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy_Base : MoveObject
+public class Enemy_Base : MoveObj
 {
     //[System.NonSerialized]
     public float speed = 2f;             // 移動速度
-    //public float walkTime = 2f;          // 歩く時間
     public float timer;                 // タイマー
     public int direction = 1;           // 移動方向（1:右, -1:左）
 
-    // Start is called before the first frame update
-    public void Start()
-    {
-        //timer = walkTime;
-        //Attack();
-    }
-
-    // Update is called once per frame
-    public void Update()
-    {
-        if (MonitorZoomController.isZoomComplete && MonitorZoomController.CurrentZoomIndex == 0)
-        {
-            // 移動
-            Move();
-
-            //当たり判定処理
-            OnCollisionEnter(null);
-
-            // タイマー更新
-            TimerUpdate();
-          
-        }
-    }
-
-
     public override void Move()
     {
-        // 移動
-        if (GetMove())
-        {
-            transform.Translate(Vector2.right * direction * speed * Time.deltaTime);
-        }
+        transform.Translate(Vector2.right * direction * speed * Time.deltaTime);
     }
 
+    
 
-    public void TimerUpdate()
+    //playerと接触したら
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        // タイマー更新
-        //timer -= Time.deltaTime;
+        
+        if (collision != null)
+        {
+            HitPlayer(collision);
+            HitWall(collision);
+        }
     }
 
     // スプライトの向きを反転（2D用）
@@ -66,18 +42,6 @@ public class Enemy_Base : MoveObject
         direction *= -1; // 方向転換
         FlipSprite(); // 見た目も反転（必要なら）   
     }
-
-    //playerと接触したら
-    protected virtual void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision != null)
-        {
-            HitPlayer(collision);
-            HitWall(collision);
-        }
-    }
-
 
     protected virtual void HitPlayer(Collision collision)
     {
