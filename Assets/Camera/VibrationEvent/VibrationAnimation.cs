@@ -37,7 +37,7 @@ public class VibrationAnimation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isAnimation && !isFading)
+        if (Input.GetKeyDown(KeyCode.Return) && !isAnimation && !isFading)
         {
             Debug.Log("通知：振動アニメーション開始");
 

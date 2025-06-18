@@ -234,7 +234,7 @@ MonoBehaviour:
   maxDistance: 50
   reflectLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
   stopLayers:
     serializedVersion: 2
     m_Bits: 1
