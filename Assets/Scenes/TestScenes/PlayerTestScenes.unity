@@ -660,6 +660,7 @@ MonoBehaviour:
   itemTexture: {fileID: 2800000, guid: a89b7b906c943854dbb3024518f532b6, type: 3}
   itemPrefab: {fileID: 154032329837742844, guid: 0fcbb356792ccf845851c9662e596d3d, type: 3}
   renderCamera: {fileID: 819170588950334602}
+  monitorIndex: 1
 --- !u!1 &164031324
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,6 +2062,7 @@ MonoBehaviour:
   itemTexture: {fileID: 2800000, guid: 0bc5664f695e75042ac155668925ba95, type: 3}
   itemPrefab: {fileID: 7951065039784010973, guid: dda9a430ff9a0434ebfe85ff4531d9f5, type: 3}
   renderCamera: {fileID: 819170588950334602}
+  monitorIndex: 1
 --- !u!212 &911267018
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8833,6 +8835,7 @@ MonoBehaviour:
   itemTexture: {fileID: 2800000, guid: 468c1c06729130341abdaaaa34ffc3b8, type: 3}
   itemPrefab: {fileID: 7547497594687514434, guid: c9c0fff9e553889488b8c3bbc1c09fc8, type: 3}
   renderCamera: {fileID: 819170588950334602}
+  monitorIndex: 1
 --- !u!222 &8557163468090275493
 CanvasRenderer:
   m_ObjectHideFlags: 0
