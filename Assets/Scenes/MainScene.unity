@@ -3798,10 +3798,10 @@ GameObject:
   - component: {fileID: 1277499501}
   - component: {fileID: 1277499503}
   - component: {fileID: 1277499510}
+  - component: {fileID: 1277499511}
   - component: {fileID: 1277499509}
   - component: {fileID: 1277499506}
   - component: {fileID: 1277499507}
-  - component: {fileID: 1277499508}
   m_Layer: 3
   m_Name: character_test2_0
   m_TagString: Player
@@ -4038,18 +4038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverCanvas: {fileID: 3548788292175291681}
   playerHP: {fileID: 1277499506}
---- !u!114 &1277499508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277499495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88707175d9237434a8c99bc8e409a380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1277499509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4076,10 +4064,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fb084a80b08964fa5727a3bd397088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementKey: 4
   moveSpeed: 15
   jumpPower: 10.5
   CameraChange: 0
+--- !u!114 &1277499511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277499495}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4679baaa294b57439e3a4fcd24b8f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1304793302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3394951616832546779, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
