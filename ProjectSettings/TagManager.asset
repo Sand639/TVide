@@ -11,7 +11,9 @@ TagManager:
   - Floating
   - JumpZone
   - HalfwayPoint
+
   - InventoryItem
+
   layers:
   - Default
   - TransparentFX

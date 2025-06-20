@@ -25,7 +25,6 @@ public class PlayerTest : MonoBehaviour
 
     private float horizontalInput = 0f;
     private float verticalInput = 0f;
-    private bool enableZMovement = false;
 
     private bool wasGrounded = false;
     private bool canJump = false;
@@ -117,12 +116,7 @@ public class PlayerTest : MonoBehaviour
                     horizontalInput = Input.GetKey(KeyCode.D) ? 1f : (Input.GetKey(KeyCode.A) ? -1f : 0f);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    enableZMovement = !enableZMovement;
-                }
-
-                verticalInput = enableZMovement
+                verticalInput = GameManager.Instance.isCameraSkill
                     ? (Input.GetKey(KeyCode.W) ? 1f : (Input.GetKey(KeyCode.S) ? -1f : 0f))
                     : 0f;
 

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7708258013470718108}
   - component: {fileID: 7726797773433544501}
   - component: {fileID: 6615097727424246184}
-  - component: {fileID: 493241675193835497}
   - component: {fileID: 90144918290866978}
+  - component: {fileID: 2022628327517244814}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -135,7 +135,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7e70b49c604b2df438944fdaf57011d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,7 +218,20 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &493241675193835497
+--- !u!114 &90144918290866978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364892352742154755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae9bbcde766dff42aefd3dd713dc1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+--- !u!114 &2022628327517244814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,20 +247,9 @@ MonoBehaviour:
   maxDistance: 50
   reflectLayers:
     serializedVersion: 2
+
     m_Bits: 1
+
   stopLayers:
     serializedVersion: 2
     m_Bits: 1
---- !u!114 &90144918290866978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8364892352742154755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae9bbcde766dff42aefd3dd713dc1e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
