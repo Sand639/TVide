@@ -19,7 +19,7 @@ public class VibrationAnimation : MonoBehaviour
     private float shakeElapsed = 0f;
 
     public bool isAnimation = false;
-    private bool isFading = false;
+    public bool isFading = false;
 
     [Header("Canvasのフェード処理を呼び出す")]
     public CanvasFade canvasFade;
@@ -42,7 +42,9 @@ public class VibrationAnimation : MonoBehaviour
             Debug.Log("通知：振動アニメーション開始");
 
             if (canvasFade != null)
+            {
                 canvasFade.FadeOutAll();
+            }
 
             StartCoroutine(ZoomOutAndReturn());
         }

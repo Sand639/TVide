@@ -3,10 +3,9 @@ using System.Collections;
 
 public class InventoryItemSpawn : MonoBehaviour
 {
-    [Header("生成位置設定")]
+    [Header("生成位置の設定")]
     public Transform playerCamera;
     public float spawnDistance = 3.0f;
-
     public static bool IsFrameActive = false;
 
     [Header("アイテム移動設定")]
@@ -51,7 +50,7 @@ public class InventoryItemSpawn : MonoBehaviour
 
                     currentItem = Instantiate(itemPrefab, spawnPos, spawnRot);
 
-                    // スケールアニメーションを開始（0.5秒）
+                    //スケールのアニメーションの実行
                     StartCoroutine(AnimateItemScale(currentItem, 0.5f));
 
                     IsFrameActive = true;
@@ -62,7 +61,7 @@ public class InventoryItemSpawn : MonoBehaviour
 
 
     void HandleItemMovement()
-    {
+    {//移動処理
         if (currentItem == null) return;
 
         Vector3 move = Vector3.zero;
@@ -93,14 +92,12 @@ public class InventoryItemSpawn : MonoBehaviour
                     // アイテムを設置
                     Instantiate(itemPrefab, blockPos, blockRot);
 
-
-                    // アイテムクリーナーを呼び出す
+                    // アイテムクリーナーを呼び出す(inventoryItemのタグ名がついていたら消す)
                     ItemCleaner cleaner = FindObjectOfType<ItemCleaner>();
                     if (cleaner != null)
                     {
                         cleaner.RemoveOneItem();
                     }
-
 
                     // 元の場所に再表示（インベントリ用）
                     inventoryManager.RespawnSceneItem(itemPrefab);
@@ -122,6 +119,8 @@ public class InventoryItemSpawn : MonoBehaviour
             }
         }
     }
+
+
 
 
     //アイテムを0からデフォルトのサイズまで大きくする

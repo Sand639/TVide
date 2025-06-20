@@ -3,7 +3,7 @@ using UnityEngine;
 public class ItemCleaner : MonoBehaviour
 {
     [Header("アイテムタグ設定")]
-    public string itemTag = "InventoryItem"; // アイテムにこのタグを付けてください
+    public string itemTag = "InventoryItem";
 
     // 一つだけアイテムを削除する
     public void RemoveOneItem()
@@ -18,7 +18,7 @@ public class ItemCleaner : MonoBehaviour
         }
         else
         {
-            Debug.Log("削除対象のアイテムが見つかりません。");
+            Debug.Log("アイテムが見つかりません。");
         }
     }
 }
