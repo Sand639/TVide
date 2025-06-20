@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1862188757290400239}
   - component: {fileID: 1350933950482052236}
   - component: {fileID: 2204952712390183090}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Mirror
-  m_TagString: Untagged
+  m_TagString: InventoryItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
