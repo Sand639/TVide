@@ -1,14 +1,13 @@
 using UnityEngine;
 using System;
 
-//プレイヤーの移動方向に関する列挙体
-public enum PLAYER_MOVEMENT
+//プレイヤーの移動方向に関する構造体
+public struct MovementKeys
 {
-    UP,
-    LEFT,
-    DOWN,
-    RIGHT, 
-    NONE
+    public bool up;
+    public bool down;
+    public bool left;
+    public bool right;
 }
 
 //プレイヤー関連の変数を管理するスクリプト
@@ -24,7 +23,7 @@ public class PlayerManager : MonoBehaviour
 
 
     //現在プレイヤーがどの移動キーを入力しているか
-    [HideInInspector] public PLAYER_MOVEMENT movementKey = PLAYER_MOVEMENT.NONE;
+    [HideInInspector] public MovementKeys movementKeys;
 
 
     [Header("移動速度")]
@@ -55,11 +54,10 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         //プレイヤーが入力した移動キーを保持する
-        if (Input.GetKey(KeyCode.W)) movementKey = PLAYER_MOVEMENT.UP;
-        else if (Input.GetKey(KeyCode.A)) movementKey = PLAYER_MOVEMENT.LEFT;
-        else if (Input.GetKey(KeyCode.S)) movementKey = PLAYER_MOVEMENT.DOWN;
-        else if (Input.GetKey(KeyCode.D)) movementKey = PLAYER_MOVEMENT.RIGHT;
-        else movementKey = PLAYER_MOVEMENT.NONE;
+        movementKeys.up = Input.GetKey(KeyCode.W);
+        movementKeys.down = Input.GetKey(KeyCode.S);
+        movementKeys.left = Input.GetKey(KeyCode.A);
+        movementKeys.right = Input.GetKey(KeyCode.D);
     }
 
 
@@ -74,10 +72,10 @@ public class PlayerManager : MonoBehaviour
     public void DamageHP(int _damage)
     {
         //HPを減らす
-        hp = Math.Max(hp - _damage, 0); 
+        hp = Math.Max(hp - _damage, 0);
 
         //HPが0以下になったらゲームオーバー
-        if(hp <= 0) isGameOver = true;
+        if (hp <= 0) isGameOver = true;
     }
 
     //何かのオブジェクトのisTriggerに当たった時に呼ばれる関数
