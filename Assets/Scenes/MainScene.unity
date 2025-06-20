@@ -1190,6 +1190,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eebfb9ac5a5ae864c8448b4ea0a22b12, type: 3}
+--- !u!1 &462027935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 462027937}
+  - component: {fileID: 462027936}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &462027936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462027935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772af031095cf1e46b710eeb5c18b8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCameraSkill: 0
+--- !u!4 &462027937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462027935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -79.07407, y: 18.944445, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463379209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3203,11 +3248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947d0410ea640b34bbf59548a1e809bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framePrefab: {fileID: 7970856037109319389, guid: 73cd9f738eef8df4983d07fe35c4778f, type: 3}
   playerCamera: {fileID: 8738217757522297228}
-  frameSpawnDistance: 3
-  frameMoveSpeed: 8
-  blockOffsetZ: 12.5
+  spawnDistance: 3
+  moveSpeed: 8
   inventoryManager: {fileID: 2125765961}
 --- !u!1 &1258810263
 GameObject:
@@ -3641,6 +3684,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementKey: 4
+  moveSpeed: 15
+  jumpPower: 10.5
+  CameraChange: 0
 --- !u!4 &1304793302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3394951616832546779, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
@@ -8970,17 +9016,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6162506791056922498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0247456effc3a3644b9ebdcd6d3f4ddc, type: 3}
+  m_Script: {fileID: 11500000, guid: bc06b634d0791c44da12af7e110ce12a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 2331005457945226447}
-  zoomOutSize: 8
+  zoomOutSize: 7
   zoomDuration: 0.5
-  waitTime: 1.2
+  waitTime: 3
   shakeIntensity: 0.1
   shakeFrequency: 0.02
-  shakeDuration: 0.3
+  shakeDuration: 2
   isAnimation: 0
+  isFading: 0
+  canvasFade: {fileID: 0}
 --- !u!224 &8840327826423622747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9087,3 +9135,4 @@ SceneRoots:
   - {fileID: 1574650479}
   - {fileID: 1380104632}
   - {fileID: 2031128412}
+  - {fileID: 462027937}

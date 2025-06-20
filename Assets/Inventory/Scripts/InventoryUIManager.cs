@@ -24,6 +24,20 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
+    //public void UpdateSlot(int index, int spriteIndex)
+    //{
+    //    if (index < 0 || index >= slotImages.Count) return;
+
+    //    if (spriteIndex == -1 || itemSprites.Length == 0)
+    //    {
+    //        slotImages[index].sprite = emptySprite;
+    //    }
+    //    else
+    //    {
+    //        slotImages[index].sprite = itemSprites[0]; // 強制的に最初の画像を使う！
+    //    }
+    //}
+
     public void UpdateSlot(int index, int spriteIndex)
     {
         if (index < 0 || index >= slotImages.Count) return;
