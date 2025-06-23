@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_monoTone
+  m_Name: Custom_monoTone 1
   m_Shader: {fileID: 4800000, guid: bb576d7cdae8ed5438dc638656a06b38, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.027
+    - _Alpha: 1
     - _DotSize: 0.02
     - _NoiseStrength: 1
     - _TimeSpeed: 1
