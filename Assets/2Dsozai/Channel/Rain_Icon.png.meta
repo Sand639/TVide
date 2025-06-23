@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f70b6c00e94f8664eb8fcd0c1757b498
+guid: 5a2b6cfcebb998a4db1e8a40fd87939d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tv1_0
+      name: Rain_Icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 64
+        y: 18
+        width: 328
+        height: 314
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42203864de9d1c34ba4eff998fffdd37
-      internalID: 1740991630
+      spriteID: 886c30c1e0555e54088c252f518365ea
+      internalID: -172214205
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f3dcd67f25e4f054080aab72232c0cbb
+    spriteID: 0764267c9bcec6b4a8e3e1f2698d1f31
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tv1_0: 1740991630
+      Rain_Icon_0: -172214205
+      Rain_Icon_1: -1567771872
+      Rain_Icon_2: 1129234718
+      Rain_Icon_3: -1908873606
+      Rain_Icon_4: -95373674
+      Rain_Icon_5: -877793834
+      Rain_Icon_6: 1883050587
+      Rain_Icon_7: 1606042678
+      Rain_Icon_8: 711614783
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6f06a20ac8563554d95ea4b8695709f8
+guid: 32cbc7d867508df4ba8026dc70a6a102
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tv2_0
+      name: Telop_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 30
+        y: 18
+        width: 331
+        height: 78
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb7b97eb53a15414e9ba79e03855f5e2
-      internalID: -727739818
+      spriteID: 134eeb75a7bec3844898345d2e66476d
+      internalID: -1643429071
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f15d59ad5bcfa31428dba99b6faf393f
+    spriteID: fe12ac21ee1d6de4a9d0443213d3492a
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tv2_0: -727739818
+      Telop_0: -1643429071
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
