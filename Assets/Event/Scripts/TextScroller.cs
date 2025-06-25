@@ -36,18 +36,15 @@ public class TextScroller : MonoBehaviour
     {
         if (!isScrolling) return;
 
-        // 停止位置までスクロールする
+        scrollValue += scrollSpeed * Time.deltaTime;
+
+        // スクロールが終了ラインを超えたらリセット
         if (scrollValue + parentWidth >= finishLineValue)
         {
-            isScrolling = false;
-            StartCoroutine(Fade(0, waitTimeAfterScroll));
-            Invoke(nameof(ResetScrollPosition), waitTimeAfterScroll + fadeDuration + waitTimeFade);
+            scrollValue = 0;
         }
-        else
-        {
-            scrollValue += scrollSpeed * Time.deltaTime;
-            textRectTransform.anchoredPosition = new Vector3(startPosition.x - scrollValue, startPosition.y, startPosition.z);
-        }
+
+        textRectTransform.anchoredPosition = new Vector3(startPosition.x - scrollValue, startPosition.y, startPosition.z);
     }
 
 
