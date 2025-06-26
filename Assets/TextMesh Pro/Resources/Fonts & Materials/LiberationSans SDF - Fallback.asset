@@ -352,6 +352,7 @@ MonoBehaviour:
       m_LigatureGlyphID: 112
     - m_ComponentGlyphIDs: 470000004d000000
       m_LigatureGlyphID: 113
+<<<<<<< future/omata
     - m_ComponentGlyphIDs: 5100000029000000
       m_LigatureGlyphID: 11869
     - m_ComponentGlyphIDs: 510000004e000000
@@ -390,6 +391,8 @@ MonoBehaviour:
       m_LigatureGlyphID: 7601
     - m_ComponentGlyphIDs: 4e00000054000000
       m_LigatureGlyphID: 8027
+=======
+>>>>>>> develop02
     m_GlyphPairAdjustmentRecords: []
     m_MarkToBaseAdjustmentRecords: []
     m_MarkToMarkAdjustmentRecords: []
