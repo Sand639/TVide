@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EventObject : MoveObj
+public class EventObject : MoveObject
 {
     private Rigidbody rb;
     private bool hasDropped = false;
