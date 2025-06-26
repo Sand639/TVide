@@ -10,6 +10,12 @@ public struct MovementKeys
     public bool right;
 }
 
+public enum MovementMode
+{
+    ConstantSpeed,   // 等速モード
+    Inertia          // 慣性（減衰）モード
+}
+
 //プレイヤー関連の変数を管理するスクリプト
 //レベルデザイン時に使う変数は全部ここに入れる
 public class PlayerManager : MonoBehaviour
@@ -25,11 +31,15 @@ public class PlayerManager : MonoBehaviour
     //現在プレイヤーがどの移動キーを入力しているか
     [HideInInspector] public MovementKeys movementKeys;
 
+    //プレイヤーが現在どの移動モードか
+    public MovementMode movementMode = MovementMode.Inertia;
+
 
     [Header("移動速度")]
-    [SerializeField] private float moveSpeed = 15.0f;
+    public float moveSpeed = 15.0f;
+
     [Header("ジャンプの強さ")]
-    [SerializeField] private float jumpPower = 10.5f;
+    public float jumpPower = 10.5f;
     [Header("重力加速度")]
     [SerializeField] private static float gravity = 9.81f;
     [Header("プレイヤーの最大HP")]
