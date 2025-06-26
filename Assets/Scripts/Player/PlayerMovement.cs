@@ -13,6 +13,17 @@ public class PlayerMovement : MonoBehaviour
     //別のオブジェクトのvelocity 数を増やしたら簡単で使いやすいと思う　多分たすだけ
     [HideInInspector] public Vector3 externalVelocity;
 
+    [Header("ジャンプ設定")]
+    public Transform groundCheck;
+    public float groundCheckDistance = 0.2f;
+    public LayerMask groundLayer;
+
+    private bool isGrounded;
+    private float verticalVelocity = 0f;
+
+    public float jumpGravity = 9.81f;   // 通常の重力
+    public float fallGravity = 20.0f;   // 落下時に強くする
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
             moveDir.x += 1.0f;    //右方向の移動値を加算
         }
 
+        // ジャンプ入力
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            verticalVelocity = PlayerManager.Instance.jumpPower;
+        }
+
         // drag設定（必要なら）
         if (PlayerManager.Instance.movementMode == MovementMode.Inertia)
             rb.linearDamping = 0f; // 減衰強め
@@ -51,6 +68,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*******************************************************
+        *  地面判定
+        ******************************************************/
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundLayer);
+
+        /*******************************************************
+        *  重力処理
+        ******************************************************/
+
+        if (isGrounded && verticalVelocity < 0f)
+        {
+            verticalVelocity = -2f;  // 地面に押し付ける
+        }
+        else if (verticalVelocity > 0f)
+        {   // 上昇中（ジャンプ中）→ 少しだけ重力
+            verticalVelocity -= jumpGravity * Time.fixedDeltaTime;  // 上昇中
+        }
+        else
+        {   // 落下中 → 強い重力
+            verticalVelocity -= fallGravity * Time.fixedDeltaTime;  // 落下中
+        }
+
+        /*******************************************************
+         *  移動処理 
+         ******************************************************/
+
         Vector3 dir = moveDir.normalized;
         float targetSpeed = PlayerManager.Instance.moveSpeed;   //最大速度
 
@@ -92,20 +135,16 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
-
+        /*******************************************************
+        *  最終的な速度の計算
+        ******************************************************/
 
         // 合成してセット（Y方向は元のrb.velocityを保持）
         Vector3 velocity = playerVelocity + externalVelocity;
-        velocity.y = rb.linearVelocity.y;
+        velocity.y = verticalVelocity;
         rb.linearVelocity = velocity;
 
         //Vector3 finalVelocity = new Vector3(0.0f,0.0f,0.0f);
-
-        //最終的なVelocityを加算させる
-        //rb.linearVelocity = finalVelocity;
-
-        //ジャンプ
-
     }
 
 

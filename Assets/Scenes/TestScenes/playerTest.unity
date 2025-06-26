@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 265752459}
   - component: {fileID: 265752458}
   - component: {fileID: 265752457}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 512320041}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,11 +571,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   externalVelocity: {x: 0, y: 0, z: 0}
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 2119551872}
   groundCheckDistance: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!54 &512320037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119551872}
   m_Layer: 0
-  m_Name: isGroundChecker
+  m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,7 +916,7 @@ Transform:
   m_GameObject: {fileID: 2119551871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
