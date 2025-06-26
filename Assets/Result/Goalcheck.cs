@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class Goalcheck : MonoBehaviour
 {
-    public GameObject clearUI;
+    //public GameObject clearUI;
+
+    public GameObject Manager;  
+
     public bool goal = false;
+    public bool pause = false;
 
     void Start()
     {
+        
         goal = false;
-        if (clearUI != null)
-        {
-            clearUI.SetActive(false); // ç≈èâÇÕîÒï\é¶Ç…ÇµÇƒÇ®Ç≠
-        }
+        pause = false;
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -19,12 +22,14 @@ public class Goalcheck : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             goal = true;
+            //pause = true;
             Debug.Log("ÉSÅ[ÉãÇ…è’ìÀÅI");
 
-            if (clearUI != null)
-            {
-                clearUI.SetActive(true);
-            }
+            
+            ManagerController script = Manager.GetComponent<ManagerController>();
+            script.SetClearManagerActive(true);
+                //clearUI.SetActive(true);
+            
         }
     }
 }
