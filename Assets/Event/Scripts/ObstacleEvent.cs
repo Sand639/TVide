@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObstacleEvent : MoveObject
+public class ObstacleEvent : MoveObj
 
 {
     private Rigidbody rb;
