@@ -73,9 +73,11 @@ public class PlayerManager : MonoBehaviour
     * プレイヤーのHP
     ******************************************************/
     [Header("プレイヤーの最大HP")]
-    [SerializeField] private static int maxHp = 10;
+    public int maxHp = 10;
     //プレイヤーの現在のHP
-    private int hp = maxHp;
+    public int hp;
+    //プレイヤーのHPが変更されたかどうかのフラグ
+    [HideInInspector] public bool isChangeHp = false;
 
     /*******************************************************
     * プレイヤー関連のフラグ
@@ -118,6 +120,9 @@ public class PlayerManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
+
+        hp = maxHp; //最大HPをhpに代入
+
     }
 
     private void Start()
@@ -156,6 +161,9 @@ public class PlayerManager : MonoBehaviour
     {
         //HPを回復する   MaxHpを超えたらhpをmaxHpと同じ値にする
         hp = Math.Min(hp + _heal, maxHp);
+
+        //HPが変更されたフラグを立てる
+        isChangeHp = true;
     }
     //ダメージ処理
     public void DamageHP(int _damage)
@@ -165,6 +173,9 @@ public class PlayerManager : MonoBehaviour
 
         //HPが0以下になったらゲームオーバー
         if (hp <= 0) isGameOver = true;
+
+        //HPが変更されたフラグを立てる
+        isChangeHp = true;
     }
 
     //何かのオブジェクトのisTriggerに当たった時に呼ばれる関数
@@ -188,6 +199,14 @@ public class PlayerManager : MonoBehaviour
             canCameraChange = false;
         }
     }
+
+
+    //ノックバックを発生させる関数
+    public void ApplyKnockBack(Vector3 dir, float force)
+    {
+        GetComponent<PlayerMovement>().KnockBack(dir, force);
+    }
+
 
     //風を発生させる関数
     public void ApplyWindBoost(float duration, float boostSpeed)
@@ -226,4 +245,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
+
+
 }
