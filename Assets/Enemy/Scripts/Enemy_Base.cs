@@ -47,7 +47,7 @@ public class Enemy_Base : MoveObj
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerTest player = collision.gameObject.GetComponent<PlayerTest>();
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if (player != null)
             {
                 Vector3 knockDirection = (collision.transform.position - transform.position).normalized;
