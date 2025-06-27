@@ -12,6 +12,7 @@ TagManager:
   - JumpZone
   - HalfwayPoint
   - InventoryItem
+  - WoodBox
   layers:
   - Default
   - TransparentFX
