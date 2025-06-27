@@ -27,7 +27,7 @@ public class Goalcheck : MonoBehaviour
 
             
             ManagerController script = UIManagerController.GetComponent<ManagerController>();
-            script.SetGameOverManagerActive(true);
+            script.SetClearManagerActive(true);
                 //clearUI.SetActive(true);
             
         }
