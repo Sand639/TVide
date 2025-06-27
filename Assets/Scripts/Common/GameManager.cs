@@ -22,10 +22,13 @@ public class GameManager : MonoBehaviour
         if (MonitorZoomController.isZoomComplete && MonitorZoomController.CurrentZoomIndex == 0)
         {
             //Qボタンが押された時且つ、カメラが切り替えられる範囲内なら
-            if (Input.GetKeyDown(KeyCode.Q) && PlayerManager.Instance.CameraChange)
+            if (Input.GetKeyDown(KeyCode.Q) && PlayerManager.Instance.canCameraChange)
                 isCameraSkill = !isCameraSkill;        //カメラスキルで3Dと2Dを切り替える
         }
-
-
+    
+    
+    
     }
+
+
 }
