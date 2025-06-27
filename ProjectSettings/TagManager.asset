@@ -11,14 +11,16 @@ TagManager:
   - Floating
   - JumpZone
   - HalfwayPoint
+  - InventoryItem
+  - WoodBox
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
+  - Mirror
   - 
   - 
   - 

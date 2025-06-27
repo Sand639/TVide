@@ -32,6 +32,9 @@ public class MonitorZoomController : MonoBehaviour
     private float[] originalRawImagePosX;
     public float[] zoomedRawImagePosX;
 
+    public GameObject zoomBlockCanvas;
+    public float hideDelayAfterZoomStart = 0.1f;
+
     void Start()
     {
         int count = monitorMasks.Length;
@@ -50,6 +53,11 @@ public class MonitorZoomController : MonoBehaviour
                 originalRawImagePosX[i] = monitorRawImages[i].rectTransform.anchoredPosition.x;
             }
         }
+
+        if (zoomBlockCanvas != null)
+        {
+            zoomBlockCanvas.SetActive(false);
+        }
     }
 
     void Update()
@@ -62,7 +70,6 @@ public class MonitorZoomController : MonoBehaviour
             {
                 if (currentZoomIndex != -1 && currentZoomIndex != i)
                 {
-                    // 他のモニターにズーム中なら無視
                     return;
                 }
                 HandleZoom(i);
@@ -76,12 +83,17 @@ public class MonitorZoomController : MonoBehaviour
 
         if (currentZoomIndex == index)
         {
-            SetNoiseStrength(index, defaultNoiseStrength);
-            SetScanlineStrength(index, defaultScanlineStrength);
+            if (zoomBlockCanvas != null)
+            {
+                zoomBlockCanvas.SetActive(true);
+                StartCoroutine(HideZoomBlockCanvasAfterDelay(hideDelayAfterZoomStart));
+            }
 
             StartCoroutine(ZoomTo(monitorMasks[index], Vector3.one, originalPositions[index], () => {
                 isZooming = false;
                 isZoomComplete = true;
+                SetNoiseStrength(index, defaultNoiseStrength);
+                SetScanlineStrength(index, defaultScanlineStrength);
             }));
             StartCoroutine(ZoomScaleOnly(monitors[index], Vector3.one));
 
@@ -103,6 +115,12 @@ public class MonitorZoomController : MonoBehaviour
             SetNoiseStrength(index, 0f);
             SetScanlineStrength(index, 0f);
 
+            if (zoomBlockCanvas != null)
+                zoomBlockCanvas.SetActive(true);
+
+            // 早めにキャンバス非表示
+            StartCoroutine(HideZoomBlockCanvasAfterDelay(hideDelayAfterZoomStart));
+
             StartCoroutine(ZoomTo(monitorMasks[index], maskTargetScale, zoomTargetPosition, () => {
                 isZooming = false;
                 isZoomComplete = true;
@@ -117,6 +135,13 @@ public class MonitorZoomController : MonoBehaviour
             currentZoomIndex = index;
             CurrentZoomIndex = index;
         }
+    }
+
+    IEnumerator HideZoomBlockCanvasAfterDelay(float delay = -1f)
+    {
+        yield return new WaitForSeconds(delay);
+        if (zoomBlockCanvas != null)
+            zoomBlockCanvas.SetActive(false);
     }
 
     IEnumerator ZoomTo(Transform target, Vector3 targetScale, Vector3 targetPosition, System.Action onComplete)

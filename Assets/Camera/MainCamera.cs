@@ -20,7 +20,7 @@ public class MainCamera : MonoBehaviour
     void Start()
     {
         targetCameraPos = Vector3.zero;
-        charaObj = GameObject.Find("character_test2_0");
+        charaObj = GameObject.Find("Player");
     }
 
     void Update()

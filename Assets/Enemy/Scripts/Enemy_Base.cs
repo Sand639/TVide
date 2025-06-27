@@ -47,12 +47,12 @@ public class Enemy_Base : MoveObj
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerTest player = collision.gameObject.GetComponent<PlayerTest>();
+            PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
             if (player != null)
             {
                 Vector3 knockDirection = (collision.transform.position - transform.position).normalized;
                 float knockForce = 10.0f;
-                player.KnockBack(knockDirection, knockForce);
+                player.ApplyKnockBack(knockDirection, knockForce);
 
             }
             Destroy(gameObject);

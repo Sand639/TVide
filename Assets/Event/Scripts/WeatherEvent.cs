@@ -14,9 +14,9 @@ public class WeatherEvent : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "character_test2_0")
+        if (collision.gameObject.name == "Player")
         {
-            PlayerTest player = collision.gameObject.GetComponent<PlayerTest>();
+            PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
 
             if (player != null)
             {
