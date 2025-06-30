@@ -75,7 +75,7 @@ public class PlayerManager : MonoBehaviour
     [Header("プレイヤーの最大HP")]
     public int maxHp = 10;
     //プレイヤーの現在のHP
-    public int hp;
+    [HideInInspector] public int hp;
     //プレイヤーのHPが変更されたかどうかのフラグ
     [HideInInspector] public bool isChangeHp = false;
 
