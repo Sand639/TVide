@@ -29,8 +29,8 @@ public class MonitorZoomController : MonoBehaviour
     public RawImage[] monitorRawImages;
     public Vector2[] zoomedSizes;
     public Vector2[] originalSizes;
-    private float[] originalRawImagePosX;
-    public float[] zoomedRawImagePosX;
+    private Vector2[] originalRawImagePos;
+    public Vector2[] zoomedRawImagePos;
 
     public GameObject zoomBlockCanvas;
     public float hideDelayAfterZoomStart = 0.1f;
@@ -41,7 +41,7 @@ public class MonitorZoomController : MonoBehaviour
         originalScales = new Vector3[count];
         originalPositions = new Vector3[count];
         originalSizes = new Vector2[count];
-        originalRawImagePosX = new float[count];
+        originalRawImagePos = new Vector2[count];
 
         for (int i = 0; i < count; i++)
         {
@@ -50,7 +50,7 @@ public class MonitorZoomController : MonoBehaviour
             if (monitorRawImages != null && i < monitorRawImages.Length)
             {
                 originalSizes[i] = monitorRawImages[i].rectTransform.sizeDelta;
-                originalRawImagePosX[i] = monitorRawImages[i].rectTransform.anchoredPosition.x;
+                originalRawImagePos[i] = monitorRawImages[i].rectTransform.anchoredPosition;
             }
         }
 
@@ -99,7 +99,7 @@ public class MonitorZoomController : MonoBehaviour
 
             if (monitorRawImages != null && index < monitorRawImages.Length)
             {
-                StartCoroutine(ZoomSize(monitorRawImages[index].rectTransform, originalSizes[index], false, originalRawImagePosX[index]));
+                StartCoroutine(ZoomSize(monitorRawImages[index].rectTransform, originalSizes[index], originalRawImagePos[index]));
             }
 
             currentZoomIndex = -1;
@@ -118,7 +118,6 @@ public class MonitorZoomController : MonoBehaviour
             if (zoomBlockCanvas != null)
                 zoomBlockCanvas.SetActive(true);
 
-            // 早めにキャンバス非表示
             StartCoroutine(HideZoomBlockCanvasAfterDelay(hideDelayAfterZoomStart));
 
             StartCoroutine(ZoomTo(monitorMasks[index], maskTargetScale, zoomTargetPosition, () => {
@@ -127,9 +126,9 @@ public class MonitorZoomController : MonoBehaviour
             }));
             StartCoroutine(ZoomScaleOnly(monitors[index], monitorTargetScale));
 
-            if (monitorRawImages != null && index < monitorRawImages.Length && index < zoomedSizes.Length && index < zoomedRawImagePosX.Length)
+            if (monitorRawImages != null && index < monitorRawImages.Length && index < zoomedSizes.Length && index < zoomedRawImagePos.Length)
             {
-                StartCoroutine(ZoomSize(monitorRawImages[index].rectTransform, zoomedSizes[index], false, zoomedRawImagePosX[index]));
+                StartCoroutine(ZoomSize(monitorRawImages[index].rectTransform, zoomedSizes[index], zoomedRawImagePos[index]));
             }
 
             currentZoomIndex = index;
@@ -137,7 +136,7 @@ public class MonitorZoomController : MonoBehaviour
         }
     }
 
-    IEnumerator HideZoomBlockCanvasAfterDelay(float delay = -1f)
+    IEnumerator HideZoomBlockCanvasAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (zoomBlockCanvas != null)
@@ -171,21 +170,17 @@ public class MonitorZoomController : MonoBehaviour
         target.localScale = targetScale;
     }
 
-    IEnumerator ZoomSize(RectTransform rectTransform, Vector2 targetSize, bool preserveY, float targetPosX)
+    IEnumerator ZoomSize(RectTransform rectTransform, Vector2 targetSize, Vector2 targetAnchoredPos)
     {
-        Vector2 initialSize = rectTransform.sizeDelta;
-        float targetY = preserveY ? initialSize.y : targetSize.y;
-
-        while (Vector2.Distance(rectTransform.sizeDelta, targetSize) > 0.5f || Mathf.Abs(rectTransform.anchoredPosition.x - targetPosX) > 0.01f)
+        while (Vector2.Distance(rectTransform.sizeDelta, targetSize) > 0.5f ||
+               Vector2.Distance(rectTransform.anchoredPosition, targetAnchoredPos) > 0.01f)
         {
-            Vector2 newSize = Vector2.Lerp(rectTransform.sizeDelta, targetSize, Time.deltaTime * zoomSpeed);
-            if (preserveY) newSize.y = targetY;
-            rectTransform.sizeDelta = newSize;
-            rectTransform.anchoredPosition = new Vector2(Mathf.Lerp(rectTransform.anchoredPosition.x, targetPosX, Time.deltaTime * zoomSpeed), rectTransform.anchoredPosition.y);
+            rectTransform.sizeDelta = Vector2.Lerp(rectTransform.sizeDelta, targetSize, Time.deltaTime * zoomSpeed);
+            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, targetAnchoredPos, Time.deltaTime * zoomSpeed);
             yield return null;
         }
-        rectTransform.sizeDelta = preserveY ? new Vector2(targetSize.x, targetY) : targetSize;
-        rectTransform.anchoredPosition = new Vector2(targetPosX, rectTransform.anchoredPosition.y);
+        rectTransform.sizeDelta = targetSize;
+        rectTransform.anchoredPosition = targetAnchoredPos;
     }
 
     void SetNoiseStrength(int index, float value)

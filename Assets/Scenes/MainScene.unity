@@ -4393,35 +4393,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[0].x
-      value: 6
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[0].y
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[1].x
-      value: 6
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[1].y
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[2].x
-      value: 6
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[2].y
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[3].x
-      value: 6
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: zoomedSizes.Array.data[3].y
-      value: 3
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: originalSizes.Array.data[0].x
@@ -4481,19 +4485,51 @@ PrefabInstance:
       objectReference: {fileID: 255974101871139318}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: 'zoomedRawImagePosX.Array.data[0]'
-      value: 0.45
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: 'zoomedRawImagePosX.Array.data[1]'
-      value: 0.45
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: 'zoomedRawImagePosX.Array.data[2]'
-      value: 0.45
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: 'zoomedRawImagePosX.Array.data[3]'
-      value: 0.45
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[0].x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[0].y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[1].x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[1].y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[2].x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[2].y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[3].x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805790882731991281, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
+      propertyPath: zoomedRawImagePos.Array.data[3].y
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3394951616832546779, guid: 71a6628481016b0418fdc6e19652273d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4882,7 +4918,7 @@ GameObject:
   - component: {fileID: 1313507337}
   - component: {fileID: 1313507340}
   - component: {fileID: 1313507339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mirror_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
