@@ -46,6 +46,16 @@ public class ReflectingLaser : MonoBehaviour
                     rope.Cut();
                 }
 
+                // ƒvƒŒƒCƒ„[Šª‚«–ß‚µˆ—
+                if (hit.collider.CompareTag("Player"))
+                {
+                    var rewind = hit.collider.GetComponent<PlayerRewindPosition>();
+                    if (rewind != null)
+                    {
+                        rewind.RewindToPastPosition();
+                    }
+                }
+
                 // ”½Ëˆ—
                 if (((1 << hit.collider.gameObject.layer) & reflectLayers) != 0)
                 {

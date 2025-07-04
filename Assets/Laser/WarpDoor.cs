@@ -46,13 +46,10 @@ public class WarpDoor : MonoBehaviour
 
     void OnValidate()
     {
-        // Inspectorで値が変わったときにもテクスチャ更新
-        if (Application.isPlaying == false)
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null && renderer.sharedMaterial != null)
         {
-            if (GetComponent<Renderer>() != null)
-            {
-                GetComponent<Renderer>().material.mainTexture = requiresKey ? lockedTexture : unlockedTexture;
-            }
+            renderer.sharedMaterial.mainTexture = requiresKey ? lockedTexture : unlockedTexture;
         }
     }
 

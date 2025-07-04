@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("ジャンプ設定")]
     public Transform groundCheck;
-    public float groundCheckDistance = 0.2f;
+    public float groundCheckDistance = 1.0f;
     public LayerMask groundLayer;
 
     [Header("地面レイヤー設定")]
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (PlayerManager.Instance.movementKeys.right)  //Dキー
         {
-            moveDir.x += 1.0f;    //右方向の移動値を加算
+            moveDir.x += 1.0f;    //右方向の移動値を加算"
         }
 
         // ジャンプ入力
