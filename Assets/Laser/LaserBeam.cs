@@ -24,15 +24,8 @@ public class ReflectingLaser : MonoBehaviour
         lr.positionCount = 1;
         lr.SetPosition(0, origin);
 
-        // 反映モードによるレーザーの色切り替え
-        if (InventoryItemSpawn.IsFrameActive)
-        {
-            lr.material.color = Color.cyan;
-        }
-        else
-        {
-            lr.material.color = Color.red;
-        }
+        // レーザーの色切り替え
+        lr.material.color = InventoryItemSpawn.IsFrameActive ? Color.cyan : Color.red;
 
         int points = 1;
 
@@ -45,6 +38,13 @@ public class ReflectingLaser : MonoBehaviour
                 lr.positionCount = points + 1;
                 lr.SetPosition(points, origin);
                 points++;
+
+                // RopeCuttable を取得して切断
+                RopeCuttable rope = hit.collider.GetComponent<RopeCuttable>();
+                if (rope != null)
+                {
+                    rope.Cut();
+                }
 
                 // 反射処理
                 if (((1 << hit.collider.gameObject.layer) & reflectLayers) != 0)
