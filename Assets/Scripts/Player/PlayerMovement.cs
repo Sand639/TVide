@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("ジャンプ設定")]
     public Transform groundCheck;
-    public float groundCheckDistance = 1.0f;
+    public float groundCheckDistance = 0.3f;
     public LayerMask groundLayer;
 
     [Header("地面レイヤー設定")]
@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     //プレイヤーがノックバック中かどうか
     private bool isKnockback = false;
+
+
+
 
     void Start()
     {
@@ -52,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //プレイヤー停止中ならプレイヤーの動きを停止させる
             rb.isKinematic = PlayerManager.Instance.isStop;
+            //Debug.Log("停止中");
             return;
         }
 
@@ -67,24 +71,28 @@ public class PlayerMovement : MonoBehaviour
         //移動入力
 
         //Z方向の移動はカメラ切替(3D)のスキルが有効な時のみ入力可能
-        if (GameManager.Instance.isCameraSkill) 
+        if (GameManager.Instance.isCameraSkill)
         {
             if (PlayerManager.Instance.movementKeys.up)     //Wキー
             {
                 moveDir.z += 1.0f;    //奥方向の移動値を加算
+                //Debug.Log("Wキー");
             }
             if (PlayerManager.Instance.movementKeys.down)   //Sキー
             {
                 moveDir.z += -1.0f;   //手前方向の移動値を加算
+                //Debug.Log("Sキー");
             }
         }
         if (PlayerManager.Instance.movementKeys.left)   //Aキー
         {
             moveDir.x += -1.0f;   //左方向の移動値を加算
+            //Debug.Log("Aキー");
         }
         if (PlayerManager.Instance.movementKeys.right)  //Dキー
         {
-            moveDir.x += 1.0f;    //右方向の移動値を加算"
+            moveDir.x += 1.0f;    //右方向の移動値を加算
+            //Debug.Log("Dキー");
         }
 
         // ジャンプ入力
@@ -92,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         if ((isGrounded || PlayerManager.Instance.isRain) && Input.GetKeyDown(KeyCode.Space))
         {
             float jump = 0.0f;
+            //Debug.Log("ジャンプ中");
 
             //雨発生中のジャンプ力を下げる
             if (PlayerManager.Instance.isRain) { jump = PlayerManager.Instance.jumpPower * 0.5f; }
@@ -111,7 +120,8 @@ public class PlayerMovement : MonoBehaviour
         ******************************************************/
 
         //プレイヤーが停止中ならこの後の処理を行わない
-        if (PlayerManager.Instance.isStop) return;
+        if (PlayerManager.Instance.isStop) { return; }
+
 
         /*******************************************************
         *  地面判定
@@ -119,18 +129,41 @@ public class PlayerMovement : MonoBehaviour
 
         // groundCheck の位置を中心に、groundCheckDistance の半径で球体（OverlapSphere）を作り、範囲内のレイヤーを取得
         Collider[] hits = Physics.OverlapSphere(groundCheck.position, groundCheckDistance, groundLayer);
-        
-        isGrounded = false; //毎回地面着地フラグをリセットする
 
-        foreach (var hit in hits)   //取得した全てのレイヤーを調べる
+        isGrounded = false;
+
+        Vector3 boxHalfExtents = new Vector3(0.69f, 0.05f, 0.69f); // 横に広く、縦に薄い
+        Vector3 boxCenter = groundCheck.position - Vector3.up * (groundCheckDistance * 0.5f);
+
+        Collider[] hitColliders = Physics.OverlapBox(boxCenter, boxHalfExtents, Quaternion.identity, groundLayer);
+
+        foreach (var col in hitColliders)
         {
-            // 除外対象のレイヤーでなければ（= 通常の地面であれば）isGrounded を true にする
-            if (((1 << hit.gameObject.layer) & excludedGroundLayer) == 0)
+            if (((1 << col.gameObject.layer) & excludedGroundLayer) == 0)
             {
-                isGrounded = true;  //地面着地フラグを立てる
-                break;  //一つでも地面レイヤーがあったならfor文から抜ける
+                isGrounded = true;
+                Debug.Log("OverlapBox 地面着地中: " + col.name);
+                break;
             }
         }
+        if (!isGrounded)
+        {
+            Debug.Log("OverlapBox 空中判定中");
+        }
+
+        //isGrounded = false; //毎回地面着地フラグをリセットする
+        //Debug.Log("OverlapSphereのヒット数: " + hits.Length);
+
+        //foreach (var hit in hits)   //取得した全てのレイヤーを調べる
+        //{
+        //    // 除外対象のレイヤーでなければ（= 通常の地面であれば）isGrounded を true にする
+        //    if (((1 << hit.gameObject.layer) & excludedGroundLayer) == 0)
+        //    {
+        //        Debug.Log("ヒット対象: " + hit.gameObject.name + " Layer: " + LayerMask.LayerToName(hit.gameObject.layer));
+        //        isGrounded = true;  //地面着地フラグを立てる
+        //        break;  //一つでも地面レイヤーがあったならfor文から抜ける
+        //    }
+        //}
 
         /*******************************************************
         *  重力処理
@@ -140,15 +173,23 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && verticalVelocity < 0f)
         {
             verticalVelocity = -2f;  // 地面に押し付ける
-        }
-        else if (verticalVelocity > 0f)
-        {   // 上昇中（ジャンプ中）→ 少しだけ重力
-            verticalVelocity -= PlayerManager.Instance.jumpGravity * Time.fixedDeltaTime;  // 上昇中
+            //Debug.Log("地面着地中");
         }
         else
-        {   // 落下中 → 強い重力
-            verticalVelocity -= PlayerManager.Instance.fallGravity * Time.fixedDeltaTime;  // 落下中
+        {
+            verticalVelocity -= PlayerManager.Instance.jumpGravity * Time.fixedDeltaTime;  // 上昇中
+                                                                                           // Debug.Log("空中");
         }
+        //else if (verticalVelocity > 0f)
+        //{   // 上昇中（ジャンプ中）→ 少しだけ重力
+        //    verticalVelocity -= PlayerManager.Instance.jumpGravity * Time.fixedDeltaTime;  // 上昇中
+        //    Debug.Log("ジャンプ中");
+        //}
+        //else
+        //{   // 落下中 → 強い重力
+        //    verticalVelocity -= PlayerManager.Instance.fallGravity * Time.fixedDeltaTime;  // 落下中
+        //    Debug.Log("落下中");
+        //}
 
         /*******************************************************
          *  移動処理 
@@ -160,6 +201,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!isKnockback)//ノックバック中はプレイヤーの移動速度を加算させない
         {
+
             //現在の移動モードによって処理を変更
             switch (PlayerManager.Instance.movementMode)
             {
@@ -196,9 +238,23 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+
+        // 壁との接触判定用
+        RaycastHit hitRay;
+        bool isTouchingWall = Physics.Raycast(transform.position, dir, out hitRay, 0.6f, groundLayer);
+
+        if (isTouchingWall)
+        {
+            // 壁にぶつかっている方向の成分を除外
+            Vector3 wallNormal = hitRay.normal;
+            dir = Vector3.ProjectOnPlane(dir, wallNormal); // 壁面に沿った移動方向に修正
+        }
+
         /*******************************************************
         *  最終的な速度の計算
         ******************************************************/
+
+        //Debug.Log("計算前velocity: " + rb.linearVelocity);
 
         //移動の速度とその他の速度を加算する
         Vector3 velocity = playerVelocity + knockbackVelocity;
@@ -206,6 +262,9 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = verticalVelocity;
         //最終的な速度をRigidBodyに代入する
         rb.linearVelocity = velocity;
+
+
+        //Debug.Log("最終的なvelocity: " + velocity);
 
         /*******************************************************
         *  速度の減衰計算
@@ -287,6 +346,17 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);  //ノックバックを継続する時間待つ
         knockbackVelocity = Vector3.zero;   //ノックバック終了後、ノックバックの速度をリセットする
         isKnockback = false;    //ノックバック中のフラグを下げる
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Vector3 size = new Vector3(1.38f, 0.1f, 1.38f); // 2倍の値（Boxの全体サイズ）
+            Vector3 center = groundCheck.position - Vector3.up * (groundCheckDistance * 0.5f);
+            Gizmos.DrawWireCube(center, size);
+        }
     }
 
 
