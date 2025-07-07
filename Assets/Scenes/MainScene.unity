@@ -2250,6 +2250,14 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 2092780126}
+    - target: {fileID: 7295032116010193957, guid: 401fc84e126603342864584cc46c367f, type: 3}
+      propertyPath: flashInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295032116010193957, guid: 401fc84e126603342864584cc46c367f, type: 3}
+      propertyPath: InvincibleTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8824138038632788910, guid: 401fc84e126603342864584cc46c367f, type: 3}
       propertyPath: m_Name
       value: Player
