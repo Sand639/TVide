@@ -3,6 +3,9 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class ManagerController : MonoBehaviour
 {
+    // シングルトンインスタンス用プロパティ（外部からアクセス可能）
+    public static ManagerController Instance { get; private set; }
+
     [Header("各キャンバスのマネージャー")]
     [Tooltip("ポーズメニュー画面マネージャー")]
     public GameObject PauseManager;
@@ -18,6 +21,15 @@ public class ManagerController : MonoBehaviour
     public GameObject GameClearCanvas;
     [Tooltip("ゲームオーバー画面")]
     public GameObject GameOverCanvas;
+
+
+    private void Awake()
+    {
+        //シングルトンインスタンス
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

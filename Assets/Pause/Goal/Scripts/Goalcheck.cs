@@ -4,6 +4,7 @@ public class Goalcheck : MonoBehaviour
 {
     //public GameObject clearUI;
 
+
     public GameObject UIManagerController;  
 
     public bool goal = false;

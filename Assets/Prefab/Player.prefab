@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4391099844308650734}
   - component: {fileID: 7295032116010193957}
   - component: {fileID: 3856487966550711867}
+  - component: {fileID: 3935697041158024426}
   - component: {fileID: 8226939345774259299}
   m_Layer: 0
   m_Name: Player
@@ -215,6 +216,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4576001876551288939}
   delayTime: 0.1
+--- !u!114 &3935697041158024426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824138038632788910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1fad6f1531e454a88cfe67932cc943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindTime: 1
 --- !u!65 &8226939345774259299
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -119,6 +119,7 @@ public class GameOverController : MonoBehaviour
 
             case 1:
                 //‚â‚è’¼‚·
+                RetryGame();
                 break;
 
             case 2:
