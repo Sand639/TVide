@@ -29,8 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseStrength: 0.271
-    - _ScanlineStrength: 0.226
+    - _NoiseStrength: 0
+    - _ScanlineStrength: 0
     - _TimeSpeed: 3
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
