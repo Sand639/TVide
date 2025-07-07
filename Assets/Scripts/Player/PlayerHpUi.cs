@@ -73,4 +73,7 @@ public class PlayerHpUi : MonoBehaviour
             heartObjects.Add(heart);    //ƒn[ƒg‚ğì¬
         }
     }
+
+
+
 }

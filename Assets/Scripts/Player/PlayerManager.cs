@@ -29,6 +29,8 @@ public class PlayerManager : MonoBehaviour
     //プレイヤー関連のスクリプトを保持
     private Goalcheck goalcheck;    //ゴール判定確認クラス
 
+    //リジッドボディ取得
+    private Rigidbody rb;
 
 
     //現在プレイヤーがどの移動キーを入力しているか
@@ -85,7 +87,7 @@ public class PlayerManager : MonoBehaviour
     //カメラ切替(3D/2D)のスキルを使えるかどうか
     [HideInInspector] public bool canCameraChange = false;
     //プレイヤーの更新を停止させるかどうか
-    [HideInInspector] public bool isStop= false;
+    [HideInInspector] public bool isStop = false;
     //ゲームオーバーかどうかを判定する
     private bool isGameOver = false;
 
@@ -128,6 +130,8 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         goalcheck = FindObjectOfType<Goalcheck>();  //ゴールクラスを見つける
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -144,11 +148,32 @@ public class PlayerManager : MonoBehaviour
             isStop = false; //プレイヤーの更新処理を開始
         }
 
-        //プレイヤーが入力した移動キーを保持する
-        movementKeys.up = Input.GetKey(KeyCode.W);
+        if (GameManager.Instance.isCameraSkill)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation; // Z位置だけ解除して回転固定は残す        }
+        }
+
+
+            //プレイヤーが入力した移動キーを保持する
+            movementKeys.up = Input.GetKey(KeyCode.W);
         movementKeys.down = Input.GetKey(KeyCode.S);
         movementKeys.left = Input.GetKey(KeyCode.A);
         movementKeys.right = Input.GetKey(KeyCode.D);
+
+
+
+        //HPデバッグコマンド
+
+        //if (Input.GetKeyDown(KeyCode.O))
+        //    PlayerManager.Instance.DamageHP(1);
+
+        //if (Input.GetKeyDown(KeyCode.P))
+        //    PlayerManager.Instance.HealHP(1);
+
 
         //天候系のタイマー処理
         UpdateWeatherTimers();
@@ -168,12 +193,16 @@ public class PlayerManager : MonoBehaviour
     //ダメージ処理
     public void DamageHP(int _damage)
     {
+
         //HPを減らす
         hp = Math.Max(hp - _damage, 0);
 
         //HPが0以下になったらゲームオーバー
-        if (hp <= 0) isGameOver = true;
-
+        if (hp <= 0)
+        {
+            isGameOver = true;
+            ManagerController.Instance.SetGameOverManagerActive(true);
+        }
         //HPが変更されたフラグを立てる
         isChangeHp = true;
     }
