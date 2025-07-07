@@ -58,7 +58,7 @@ public class MainCamera : MonoBehaviour
         }
 
         Vector3 newPos = Vector3.Lerp(transform.position, targetCameraPos, Time.deltaTime * lerpSpeed);
-        newPos.x = charaObj.transform.position.x;
+        newPos.x = charaObj.transform.position.x + 7.0f;
 
         if (newPos.x < minX) newPos.x = minX;
         if (newPos.y < minY) newPos.y = minY;
