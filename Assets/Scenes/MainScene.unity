@@ -9579,6 +9579,18 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7110766659897665917, guid: b79f7c3832ef26841be3a51fb79d9b20, type: 3}
+      propertyPath: heartSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110766659897665917, guid: b79f7c3832ef26841be3a51fb79d9b20, type: 3}
+      propertyPath: startPosition.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110766659897665917, guid: b79f7c3832ef26841be3a51fb79d9b20, type: 3}
+      propertyPath: startPosition.y
+      value: -120
+      objectReference: {fileID: 0}
     - target: {fileID: 8719398280447059336, guid: b79f7c3832ef26841be3a51fb79d9b20, type: 3}
       propertyPath: m_Pivot.x
       value: 0
