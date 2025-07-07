@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
@@ -29,8 +30,12 @@ public class PlayerManager : MonoBehaviour
     //プレイヤー関連のスクリプトを保持
     private Goalcheck goalcheck;    //ゴール判定確認クラス
 
-    //リジッドボディ取得
+    //プレイヤーのリジッドボディ
     private Rigidbody rb;
+
+    //プレイヤーの画像
+    private SpriteRenderer sr;
+
 
 
     //現在プレイヤーがどの移動キーを入力しているか
@@ -80,6 +85,18 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public int hp;
     //プレイヤーのHPが変更されたかどうかのフラグ
     [HideInInspector] public bool isChangeHp = false;
+
+
+    /*******************************************************
+    * プレイヤーの無敵処理
+    ******************************************************/
+    [Header("プレイヤーの無敵時間")]
+    [SerializeField] private float InvincibleTime = 2.0f;
+    [Header("プレイヤーが無敵時間中に点滅する速度")]
+    [SerializeField] private float flashInterval = 0.01f;
+    //プレイヤーが無敵かどうかのフラグ
+    [HideInInspector] private bool Invincible = false;
+
 
     /*******************************************************
     * プレイヤー関連のフラグ
@@ -131,7 +148,13 @@ public class PlayerManager : MonoBehaviour
     {
         goalcheck = FindObjectOfType<Goalcheck>();  //ゴールクラスを見つける
 
+        /*******************************************************
+        * プレイヤーのコンポーネントを取得する処理
+        ******************************************************/
+        //プレイヤーのリジッドボディ取得
         rb = GetComponent<Rigidbody>();
+        //プレイヤーの画像を取得
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -148,18 +171,20 @@ public class PlayerManager : MonoBehaviour
             isStop = false; //プレイヤーの更新処理を開始
         }
 
+        //カメラ切替(3D/2D)のスキルが有効/無効でZ方向の移動を制限する
         if (GameManager.Instance.isCameraSkill)
-        {
-            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        {   //スキル使用中はZ方向の移動を可能にする
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
-        {
-            rb.constraints = RigidbodyConstraints.FreezeRotation; // Z位置だけ解除して回転固定は残す        }
+        {   // スキル使用中以外はZ移動を制限
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+
         }
 
 
-            //プレイヤーが入力した移動キーを保持する
-            movementKeys.up = Input.GetKey(KeyCode.W);
+        //プレイヤーが入力した移動キーを保持する
+        movementKeys.up = Input.GetKey(KeyCode.W);
         movementKeys.down = Input.GetKey(KeyCode.S);
         movementKeys.left = Input.GetKey(KeyCode.A);
         movementKeys.right = Input.GetKey(KeyCode.D);
@@ -181,7 +206,9 @@ public class PlayerManager : MonoBehaviour
 
 
     //HPの関連の関数
-    //回復処理
+    /*******************************************************
+    * 回復処理関数
+    ******************************************************/
     public void HealHP(int _heal)
     {
         //HPを回復する   MaxHpを超えたらhpをmaxHpと同じ値にする
@@ -190,9 +217,14 @@ public class PlayerManager : MonoBehaviour
         //HPが変更されたフラグを立てる
         isChangeHp = true;
     }
-    //ダメージ処理
+
+    /*******************************************************
+    * ダメージ処理関数
+    ******************************************************/
     public void DamageHP(int _damage)
     {
+        //無敵状態ならダメージ処理をしない
+        if (Invincible) { return; }
 
         //HPを減らす
         hp = Math.Max(hp - _damage, 0);
@@ -203,9 +235,65 @@ public class PlayerManager : MonoBehaviour
             isGameOver = true;
             ManagerController.Instance.SetGameOverManagerActive(true);
         }
-        //HPが変更されたフラグを立てる
+
+        //プレイヤー無敵フラグを建てる
+        Invincible = true;
+        //無敵中にフラッシュをする処理を実行する
+        StartCoroutine(FlashWhileInvincible());
+
+        //HPが変更されたフラグを建てる
         isChangeHp = true;
+
     }
+
+    /*******************************************************
+    * プレイヤーを点滅させる関数
+    * プレイヤーがダメージを受けた時に使用
+    ******************************************************/
+    private IEnumerator FlashWhileInvincible()
+    {
+        //この関数が開始されてから何秒経っているかをを保持する変数
+        float elapsedTime = 0f;
+        //プレイヤーの点滅してるかどうかのフラグ
+        bool visible = true;
+
+        //無敵時間が終わるまで点滅させる
+        while (elapsedTime < InvincibleTime)
+        {
+
+            //点滅処理
+            if (visible)
+            {   //プレイヤーの透過度を下げる
+                sr.color = new Color(1.0f, 0.6f, 0.6f, 0.1f);
+            }
+            else
+            {   //プレイヤーの透過度を通常にする
+                sr.color = new Color(1.0f, 0.6f, 0.6f, 1.0f);
+            }
+
+            //点滅フラグを反転させる
+            visible = !visible;
+
+            // flashIntervalごとに点滅
+            yield return new WaitForSeconds(flashInterval);
+
+            //プレイヤーが点滅してから何秒経過しているかを計算する
+            elapsedTime += flashInterval;
+
+        }
+
+        //プレイヤーの表示を通常表示に戻す
+        sr.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+        //プレイヤーの無敵を終了させる
+        Invincible = false;
+
+    }
+
+
+    /*******************************************************
+    * 当たり判定処理
+    ******************************************************/
 
     //何かのオブジェクトのisTriggerに当たった時に呼ばれる関数
     private void OnTriggerEnter(Collider other)
@@ -230,14 +318,19 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    //ノックバックを発生させる関数
+    /*******************************************************
+    * ノックバックを発生させる関数
+    ******************************************************/
     public void ApplyKnockBack(Vector3 dir, float force)
     {
         GetComponent<PlayerMovement>().KnockBack(dir, force);
     }
 
+    //天候操作系の関数
 
-    //風を発生させる関数
+    /*******************************************************
+    * 風を発生させる関数
+    ******************************************************/
     public void ApplyWindBoost(float duration, float boostSpeed)
     {
         windDuration = duration;    //風の継続時間を代入
@@ -245,14 +338,19 @@ public class PlayerManager : MonoBehaviour
         isWind = true;              //風発生中のフラグを立てる
     }
 
-    //雨を発生させる関数
+    /*******************************************************
+    * 雨を発生させる関数
+    ******************************************************/
     public void ApplyRainFloat(float duration)
     {
         rainDuration = duration;    //雨の継続時間を代入
         isRain = true;              //雨発生中のフラグを立てる
     }
 
-    //天候系のタイマーを計算する関数
+ 
+    /*******************************************************
+    * 天候系のタイマーを計算する関数
+    ******************************************************/
     private void UpdateWeatherTimers()
     {
         if (isWind) //風発生中
