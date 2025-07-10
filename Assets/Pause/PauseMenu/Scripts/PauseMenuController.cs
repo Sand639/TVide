@@ -66,7 +66,10 @@ public class PauseMenuController : MonoBehaviour
         // ENTERキーで選択を実行
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            ExecuteSelect(); // 選択項目の実行
+            if (canbasActive)
+            {
+                ExecuteSelect(); // 選択項目の実行
+            }
         }
     }
 

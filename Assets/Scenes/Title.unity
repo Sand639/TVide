@@ -375,6 +375,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1030627438}
     - target: {fileID: 4974480623879743942, guid: d8157764403a9594dba83dbd3919d94f, type: 3}
+      propertyPath: inputEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974480623879743942, guid: d8157764403a9594dba83dbd3919d94f, type: 3}
       propertyPath: noiseOverlay
       value: 
       objectReference: {fileID: 1010491351}
@@ -393,11 +397,11 @@ PrefabInstance:
     - target: {fileID: 4974480623879743942, guid: d8157764403a9594dba83dbd3919d94f, type: 3}
       propertyPath: 'sprites.Array.data[0]'
       value: 
-      objectReference: {fileID: 21300000, guid: 0c2e7f0b4db21be4f9adaeb8c02924a3, type: 3}
+      objectReference: {fileID: 21300000, guid: 424135e65979a774385ac11b3bc19441, type: 3}
     - target: {fileID: 4974480623879743942, guid: d8157764403a9594dba83dbd3919d94f, type: 3}
       propertyPath: 'sprites.Array.data[1]'
       value: 
-      objectReference: {fileID: 21300000, guid: 33269c3373af34f428d7d84a8546f956, type: 3}
+      objectReference: {fileID: 21300000, guid: 283adea3da018f6409e12da3801d3434, type: 3}
     - target: {fileID: 4974480623879743942, guid: d8157764403a9594dba83dbd3919d94f, type: 3}
       propertyPath: 'sprites.Array.data[2]'
       value: 
@@ -878,7 +882,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.12941177, g: 0.37254903, b: 0.6039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
