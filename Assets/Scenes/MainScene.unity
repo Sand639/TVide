@@ -2265,6 +2265,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4391099844308650734, guid: 401fc84e126603342864584cc46c367f, type: 3}
+      propertyPath: groundCheckDistance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4391099844308650734, guid: 401fc84e126603342864584cc46c367f, type: 3}
       propertyPath: excludedGroundLayer.m_Bits
       value: 0
       objectReference: {fileID: 0}
