@@ -4169,7 +4169,7 @@ PrefabInstance:
     - target: {fileID: 1015933256921190941, guid: 92582d78b9748ec42b7b964a38c0e424, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1314386048, guid: 19bdb9a0f16a45446ab2f51bf41b0eca, type: 3}
+      objectReference: {fileID: 21300000, guid: e9079c85b794375429227af83890df79, type: 3}
     - target: {fileID: 1289393921561879406, guid: 92582d78b9748ec42b7b964a38c0e424, type: 3}
       propertyPath: m_Name
       value: board (2)
