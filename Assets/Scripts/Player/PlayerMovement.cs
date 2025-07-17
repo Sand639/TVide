@@ -4,6 +4,9 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // シングルトンインスタンス用プロパティ（外部からアクセス可能）
+    public static PlayerMovement Instance { get; private set; }
+
     //プレイヤーのRigidBody
     private Rigidbody rb;
 
@@ -25,16 +28,22 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     [Header("地面レイヤー設定")]
-    private bool isGrounded;
+    [HideInInspector] public bool isGrounded;
 
     [Header("除外レイヤー設定")]
     public LayerMask excludedGroundLayer;
 
 
     //プレイヤーがノックバック中かどうか
-    private bool isKnockback = false;
+    [HideInInspector] public bool isKnockback = false;
 
+    private void Awake()
+    {
+        //シングルトンインスタンス
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
 
+    }
 
 
     void Start()
